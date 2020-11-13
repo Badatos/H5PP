@@ -18,6 +18,7 @@ class h5p_contents_libraries(models.Model):
     class Meta:
         db_table = 'h5p_contents_libraries'
         unique_together = ('content_id', 'library_id', 'dependency_type')
+        app_label = 'h5p_contents_libraries'
 
 # Stores information about libraries
 
@@ -55,6 +56,7 @@ class h5p_libraries(models.Model):
         ordering = ['machine_name', 'major_version', 'minor_version']
         verbose_name = 'Library'
         verbose_name_plural = 'Libraries'
+        app_label = 'h5p_libraries'
 
     def __unicode__(self):
         return self.machine_name
@@ -74,6 +76,7 @@ class h5p_libraries_libraries(models.Model):
     class Meta:
         db_table = 'h5p_libraries_libraries'
         unique_together = ('library_id', 'required_library_id')
+        app_label = 'h5p_libraries_libraries'
 
 # Stores translations for the languages
 
@@ -90,6 +93,7 @@ class h5p_libraries_languages(models.Model):
         verbose_name = 'Library-language'
         verbose_name_plural = 'Libraries-languages'
         unique_together = (('library_id', 'language_code'))
+        app_label = 'h5p_libraries_languages'
 
     def __unicode__(self):
         return self.language_code
@@ -126,6 +130,7 @@ class h5p_contents(models.Model):
         ordering = ['title', 'author', 'content_id']
         verbose_name = 'Content'
         verbose_name_plural = 'Contents'
+        app_label = 'h5p_contents'
 
     def __unicode__(self):
         return 'Title:%s - Author:%s - Type:%s' % (self.title, self.author, self.content_type)
@@ -178,6 +183,7 @@ class h5p_points(models.Model):
         verbose_name = 'Score'
         verbose_name_plural = 'Scores'
         unique_together = (('content_id', 'uid'))
+        app_label = 'h5p_points'
 
 # Stores user data about the content
 
@@ -195,6 +201,7 @@ class h5p_content_user_data(models.Model):
     class Meta:
         db_table = 'h5p_content_user_data'
         unique_together = ('user_id', 'content_main_id', 'sub_content_id', 'data_id')
+        app_label = 'h5p_content_user_data'
 
 # Keeps track of what happens in the H5p system
 
@@ -221,6 +228,7 @@ class h5p_events(models.Model):
         ordering = ['created_at', 'type', 'sub_type']
         verbose_name = 'Event'
         verbose_name_plural = 'Events'
+        app_label = 'h5p_events'
 
 # Global counters for the H5P system
 
@@ -234,3 +242,5 @@ class h5p_counters(models.Model):
     class Meta:
         db_table = 'h5p_counters'
         unique_together = ('type', 'library_name', 'library_version')
+        app_label = 'h5p_counters'
+
